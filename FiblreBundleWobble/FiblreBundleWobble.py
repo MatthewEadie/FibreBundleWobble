@@ -80,24 +80,38 @@ height, width, channels = img.shape #get dimentions of image to be shifted
 #imgShift = shiftImageLeft(shiftedImage, img, 100)
 
 
-#Should these be smoothed so that each core only has 1 colour in it?
-#That way shifting and smoothing would change the core colour value
 #outputOriginal = overlapImages(threshold, img) #Overlap images to see image through cores
+#cv2.imshow("Original Image", outputOriginal)
+
 #outputShifted = overlapImages(threshold, imgShift) #Overlap images to see image through cores
 #outputAverage = gaussian = cv2.GaussianBlur(outputShifted, (1,1), 8)
 #cv2.imshow("Average Output", outputAverage)
 
 
-outputShifted = cv2.imread("ShiftedDown 100.png")
-cv2.imshow("Shifted Output",outputShifted)
-
-correctedShift = shiftImageUp(img, outputShifted, 100)
-cv2.imshow("Corrected Output Image", correctedShift)
-
-#cv2.imwrite("ShiftedDown.png", outputShifted) #Error cannot write image with type (double)
-
+#outputShifted = cv2.imread("ShiftedDown 100.png")
+#cv2.imshow("Shifted Output",outputShifted)
 #cv2.imshow("Original", outputOriginal) #Display image through cores
-#cv2.imshow("Shifted", outputShifted) #Display image through cores
+
+#correctedShift = shiftImageUp(img, outputShifted, 100)
+#cv2.imshow("Corrected Output Image", correctedShift)
+
+
+OriginalImage = cv2.imread("Original Image.png")
+
+correctedUp = cv2.imread("Corrected Up Shift.png")
+correctedDown = cv2.imread("Corrected Down Shift.png")
+correctedLeft = cv2.imread("Corrected Left Shift.png")
+correctedRight = cv2.imread("Corrected Right Shift.png")
+
+firstOrderCorrection = (OriginalImage + correctedUp) / 255
+secondOrderCorrection = (OriginalImage + correctedUp + correctedDown) / 255
+thirdOrderCorrection = (OriginalImage + correctedUp + correctedDown + correctedLeft) / 255
+fourthOrderCorrection = (OriginalImage + correctedUp + correctedDown + correctedLeft + correctedRight) / 255
+
+cv2.imshow("First Correction", firstOrderCorrection)
+cv2.imshow("Second Correction", secondOrderCorrection)
+cv2.imshow("Third Correction", thirdOrderCorrection)
+cv2.imshow("Final Correction", fourthOrderCorrection)
 
 cv2.waitKey(0)
 cv2.destroyAllWindows()
