@@ -85,6 +85,7 @@ imgShift = shiftImageLeft(shiftedImage, img, 100)
 outputOriginal = overlapImages(threshold, img) #Overlap images to see image through cores
 outputShifted = overlapImages(threshold, imgShift) #Overlap images to see image through cores
 
+#Testing shortcut
 outputAverage = gaussian = cv2.GaussianBlur(outputShifted, (5,5), 8)
 cv2.imshow("Average Output", outputAverage)
 
