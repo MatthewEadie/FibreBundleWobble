@@ -11,6 +11,7 @@
     <OutputPath>.</OutputPath>
     <Name>FiblreBundleWobble</Name>
     <RootNamespace>FiblreBundleWobble</RootNamespace>
+    <IsWindowsApplication>False</IsWindowsApplication>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
