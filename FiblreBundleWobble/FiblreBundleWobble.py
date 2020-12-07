@@ -77,17 +77,22 @@ height, width, channels = img.shape #get dimentions of image to be shifted
 #imgShift = shiftImageDown(shiftedImage, img, 100)
 #imgShift = shiftImageUp(shiftedImage, img, 100)
 #imgShift = shiftImageRight(shiftedImage, img, 100)
-imgShift = shiftImageLeft(shiftedImage, img, 100)
+#imgShift = shiftImageLeft(shiftedImage, img, 100)
 
 
 #Should these be smoothed so that each core only has 1 colour in it?
 #That way shifting and smoothing would change the core colour value
-outputOriginal = overlapImages(threshold, img) #Overlap images to see image through cores
-outputShifted = overlapImages(threshold, imgShift) #Overlap images to see image through cores
+#outputOriginal = overlapImages(threshold, img) #Overlap images to see image through cores
+#outputShifted = overlapImages(threshold, imgShift) #Overlap images to see image through cores
+#outputAverage = gaussian = cv2.GaussianBlur(outputShifted, (1,1), 8)
+#cv2.imshow("Average Output", outputAverage)
 
-#Testing shortcut
-outputAverage = gaussian = cv2.GaussianBlur(outputShifted, (5,5), 8)
-cv2.imshow("Average Output", outputAverage)
+
+outputShifted = cv2.imread("ShiftedDown 100.png")
+cv2.imshow("Shifted Output",outputShifted)
+
+correctedShift = shiftImageUp(img, outputShifted, 100)
+cv2.imshow("Corrected Output Image", correctedShift)
 
 #cv2.imwrite("ShiftedDown.png", outputShifted) #Error cannot write image with type (double)
 
