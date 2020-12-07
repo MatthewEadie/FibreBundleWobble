@@ -19,17 +19,45 @@ def overlapImages(threshold, img):
     return output
 
 
-def shiftImage(shiftedImage, img):
+def shiftImageDown(shiftedImage, img, amount):
     row = 0
     for i in range(height):
-        if i < 100:
+        if i < amount:
             shiftedImage[i,:] *= 0
         else:
             shiftedImage[i,:] = img[row,:]
             row += 1
 
-    cv2.imshow("Original Image", img)
-    cv2.imshow("Shifted Image", shiftedImage)
+    return shiftedImage
+
+def shiftImageUp(shiftedImage, img, amount):
+    for i in range(height):
+        if i < height - amount:
+            shiftedImage[i,:] = img[i + amount,:]
+        else:
+            shiftedImage[i,:] *= 0
+
+    return shiftedImage
+
+def shiftImageRight(shiftedImage, img, amount):
+    col = 0
+    for i in range(width):
+        if i < amount:
+            shiftedImage[:,i] *= 0
+        else:
+            shiftedImage[:,i] = img[:,col]
+            col += 1
+
+    return shiftedImage
+
+def shiftImageLeft(shiftedImage, img, amount):
+    for i in range(width):
+        if i < width - amount:
+            shiftedImage[:,i] = img[:,i + amount]
+        else:
+            shiftedImage[:,i] *= 0
+
+    return shiftedImage
 
 
 #Main program
@@ -44,7 +72,12 @@ shiftedImage = cv2.imread("ColourImage.jpg") #Read in image to be shifted
 
 height, width, channels = img.shape
 
-shiftImage(shiftedImage, img)
+
+#Wobble Image
+imgShiftDown = shiftImageDown(shiftedImage, img, 100)
+imgShiftUp = shiftImageUp(shiftedImage, img, 100)
+imgShiftRight = shiftImageRight(shiftedImage, img, 100)
+imgShiftLeft = shiftImageLeft(shiftedImage, img, 100)
 
 #output = overlapImages(threshold, img) #Overlap images to see image through cores
 
