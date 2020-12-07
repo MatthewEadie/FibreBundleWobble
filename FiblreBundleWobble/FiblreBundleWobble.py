@@ -60,18 +60,18 @@ def shiftImageLeft(shiftedImage, img, amount):
     return shiftedImage
 
 
-#Main program
+
+
+#-----------------Main program-----------------#
 fibreBundle = cv2.imread("lightfield.tif") #Read lightfield image
 
 #createthreshold(fibreBundle)
 
 threshold = cv2.imread(thresholdName) #Need to read image in for multiple layers
 img = cv2.imread("ColourImage.jpg") #Read in image to be overlayed
-
 shiftedImage = cv2.imread("ColourImage.jpg") #Read in image to be shifted
 
-height, width, channels = img.shape
-
+height, width, channels = img.shape #get dimentions of image to be shifted
 
 #Cardinal Wobble Image
 imgShiftDown = shiftImageDown(shiftedImage, img, 100)
