@@ -73,14 +73,17 @@ shiftedImage = cv2.imread("ColourImage.jpg") #Read in image to be shifted
 
 height, width, channels = img.shape #get dimentions of image to be shifted
 
-#Cardinal Wobble Image
+#Cardinal Wobble Image (Cannot be done all at the same time, Python related issues)
 imgShiftDown = shiftImageDown(shiftedImage, img, 100)
-imgShiftUp = shiftImageUp(shiftedImage, img, 100)
-imgShiftRight = shiftImageRight(shiftedImage, img, 100)
-imgShiftLeft = shiftImageLeft(shiftedImage, img, 100)
+#imgShiftUp = shiftImageUp(shiftedImage, img, 100)
+#imgShiftRight = shiftImageRight(shiftedImage, img, 100)
+#imgShiftLeft = shiftImageLeft(shiftedImage, img, 100)
 
-#output = overlapImages(threshold, img) #Overlap images to see image through cores
+outputOriginal = overlapImages(threshold, img) #Overlap images to see image through cores
+outputShifted = overlapImages(threshold, imgShiftDown) #Overlap images to see image through cores
 
-#cv2.imshow("Output", output) #Display image through cores
+cv2.imshow("Original", outputOriginal) #Display image through cores
+cv2.imshow("Shifted", outputShifted) #Display image through cores
+
 cv2.waitKey(0)
 cv2.destroyAllWindows()
