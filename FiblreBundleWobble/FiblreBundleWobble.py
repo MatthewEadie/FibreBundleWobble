@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-thresholdName = "Threshold.tiff"
+thresholdName = "Threshold.tif"
 
 #Threshold image and binarize
 def createthreshold(fibreBundle):
@@ -65,7 +65,7 @@ def shiftImageLeft(shiftedImage, img, amount):
 #-----------------Main program-----------------#
 fibreBundle = cv2.imread("lightfield.tif") #Read lightfield image
 
-#createthreshold(fibreBundle)
+createthreshold(fibreBundle)
 
 threshold = cv2.imread(thresholdName) #Need to read image in for multiple layers
 img = cv2.imread("ColourImage.jpg") #Read in image to be overlayed
@@ -73,14 +73,16 @@ shiftedImage = cv2.imread("ColourImage.jpg") #Read in image to be shifted
 
 height, width, channels = img.shape #get dimentions of image to be shifted
 
-#Cardinal Wobble Image (Cannot be done all at the same time, Python related issues)
-imgShiftDown = shiftImageDown(shiftedImage, img, 100)
-#imgShiftUp = shiftImageUp(shiftedImage, img, 100)
-#imgShiftRight = shiftImageRight(shiftedImage, img, 100)
-#imgShiftLeft = shiftImageLeft(shiftedImage, img, 100)
+#-----------------Cardinal Wobble Image (Cannot be done all at the same time, Python related issues)-----------------#
+#imgShift = shiftImageDown(shiftedImage, img, 100)
+#imgShift = shiftImageUp(shiftedImage, img, 100)
+#imgShift = shiftImageRight(shiftedImage, img, 100)
+imgShift = shiftImageLeft(shiftedImage, img, 100)
 
 outputOriginal = overlapImages(threshold, img) #Overlap images to see image through cores
-outputShifted = overlapImages(threshold, imgShiftDown) #Overlap images to see image through cores
+outputShifted = overlapImages(threshold, imgShift) #Overlap images to see image through cores
+
+#cv2.imwrite("ShiftedDown.png", outputShifted) #Error cannot write image with type (double)
 
 cv2.imshow("Original", outputOriginal) #Display image through cores
 cv2.imshow("Shifted", outputShifted) #Display image through cores
