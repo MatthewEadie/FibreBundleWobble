@@ -73,7 +73,7 @@ shiftedImage = cv2.imread("ColourImage.jpg") #Read in image to be shifted
 height, width, channels = img.shape
 
 
-#Wobble Image
+#Cardinal Wobble Image
 imgShiftDown = shiftImageDown(shiftedImage, img, 100)
 imgShiftUp = shiftImageUp(shiftedImage, img, 100)
 imgShiftRight = shiftImageRight(shiftedImage, img, 100)
