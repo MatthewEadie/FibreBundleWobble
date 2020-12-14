@@ -1,7 +1,6 @@
 import cv2
 import numpy as np
 
-thresholdName = "Threshold.tif"
 
 #Threshold image and binarize
 def createthreshold(fibreBundle):
@@ -63,15 +62,25 @@ def shiftImageLeft(shiftedImage, img, amount):
 
 
 #-----------------Main program-----------------#
+thresholdName = "Threshold.tif"
+imageName = "HumanMicrovascularEndothelialCell.jpg"
+
 fibreBundle = cv2.imread("lightfield.tif") #Read lightfield image
+#img = cv2.imread(imageName) #Read lightfield image
 
-createthreshold(fibreBundle)
 
-threshold = cv2.imread(thresholdName) #Need to read image in for multiple layers
-img = cv2.imread("ColourImage.jpg") #Read in image to be overlayed
-shiftedImage = cv2.imread("ColourImage.jpg") #Read in image to be shifted
+#width = fibreBundle.shape[1]
+#height = fibreBundle.shape[0]
+#dim = (width, height)
+#img = cv2.resize(img, dim)
+#cv2.imshow("image", img)
+#createthreshold(fibreBundle)
 
-height, width, channels = img.shape #get dimentions of image to be shifted
+#threshold = cv2.imread(thresholdName) #Need to read image in for multiple layers
+#img = cv2.imread("image.png") #Read in image to be overlayed
+#shiftedImage = cv2.imread("image.png") #Read in image to be shifted
+
+#height, width, channels = img.shape #get dimentions of image to be shifted
 
 #-----------------Cardinal Wobble Image (Cannot be done all at the same time, Python related issues)-----------------#
 #imgShift = shiftImageDown(shiftedImage, img, 100)
@@ -88,14 +97,15 @@ height, width, channels = img.shape #get dimentions of image to be shifted
 #cv2.imshow("Average Output", outputAverage)
 
 
-#outputShifted = cv2.imread("ShiftedDown 100.png")
+#outputShifted = cv2.imread("ImgShiftedLeft 100.png")
 #cv2.imshow("Shifted Output",outputShifted)
 #cv2.imshow("Original", outputOriginal) #Display image through cores
 
-#correctedShift = shiftImageUp(img, outputShifted, 100)
+#correctedShift = shiftImageRight(img, outputShifted, 100)
 #cv2.imshow("Corrected Output Image", correctedShift)
 
 
+#-----------------Image overlap-----------------#
 OriginalImage = cv2.imread("Original Image.png")
 
 correctedUp = cv2.imread("Corrected Up Shift.png")
@@ -103,15 +113,16 @@ correctedDown = cv2.imread("Corrected Down Shift.png")
 correctedLeft = cv2.imread("Corrected Left Shift.png")
 correctedRight = cv2.imread("Corrected Right Shift.png")
 
-firstOrderCorrection = (OriginalImage + correctedUp) / 255
-secondOrderCorrection = (OriginalImage + correctedUp + correctedDown) / 255
-thirdOrderCorrection = (OriginalImage + correctedUp + correctedDown + correctedLeft) / 255
-fourthOrderCorrection = (OriginalImage + correctedUp + correctedDown + correctedLeft + correctedRight) / 255
+firstOrderCorrection = (OriginalImage/255 + correctedUp/255) *0.7
+secondOrderCorrection = (OriginalImage/255 + correctedUp/255 + correctedDown/255) * 0.6
+thirdOrderCorrection = (OriginalImage/255 + correctedUp/255 + correctedDown/255 + correctedLeft/255) * 0.5
+fourthOrderCorrection = (OriginalImage /255 + correctedUp/255 + correctedDown/255 + correctedLeft/255 + correctedRight/255) *0.4
 
 cv2.imshow("First Correction", firstOrderCorrection)
 cv2.imshow("Second Correction", secondOrderCorrection)
 cv2.imshow("Third Correction", thirdOrderCorrection)
 cv2.imshow("Final Correction", fourthOrderCorrection)
+cv2.imshow("Original Image", OriginalImage)
 
 cv2.waitKey(0)
 cv2.destroyAllWindows()
