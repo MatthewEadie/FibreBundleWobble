@@ -76,15 +76,15 @@ fibreBundle = cv2.imread("lightfield.tif") #Read lightfield image
 #cv2.imshow("image", img)
 #createthreshold(fibreBundle)
 
-#threshold = cv2.imread(thresholdName) #Need to read image in for multiple layers
-#img = cv2.imread("image.png") #Read in image to be overlayed
-#shiftedImage = cv2.imread("image.png") #Read in image to be shifted
+threshold = cv2.imread(thresholdName) #Need to read image in for multiple layers
+img = cv2.imread("image.png") #Read in image to be overlayed
+shiftedImage = cv2.imread("image.png") #Read in image to be shifted
 
-#height, width, channels = img.shape #get dimentions of image to be shifted
+height, width, channels = img.shape #get dimentions of image to be shifted
 
 #-----------------Cardinal Wobble Image (Cannot be done all at the same time, Python related issues)-----------------#
 #imgShift = shiftImageDown(shiftedImage, img, 100)
-#imgShift = shiftImageUp(shiftedImage, img, 100)
+imgShift = shiftImageUp(shiftedImage, img, 100)
 #imgShift = shiftImageRight(shiftedImage, img, 100)
 #imgShift = shiftImageLeft(shiftedImage, img, 100)
 
@@ -106,12 +106,12 @@ fibreBundle = cv2.imread("lightfield.tif") #Read lightfield image
 
 
 #-----------------Image overlap-----------------#
-OriginalImage = cv2.imread("Original Image.png")
+OriginalImage = cv2.imread("ImgOriginalImage.png")
 
-correctedUp = cv2.imread("Corrected Up Shift.png")
-correctedDown = cv2.imread("Corrected Down Shift.png")
-correctedLeft = cv2.imread("Corrected Left Shift.png")
-correctedRight = cv2.imread("Corrected Right Shift.png")
+correctedUp = cv2.imread("ImgCorrectedUpShift.png")
+correctedDown = cv2.imread("ImgCorrectedDownShift.png")
+correctedLeft = cv2.imread("ImgCorrectedLeftShift.png")
+correctedRight = cv2.imread("ImgCorrectedRightShift.png")
 
 firstOrderCorrection = (OriginalImage/255 + correctedUp/255) *0.7
 secondOrderCorrection = (OriginalImage/255 + correctedUp/255 + correctedDown/255) * 0.6
