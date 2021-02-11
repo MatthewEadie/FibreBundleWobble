@@ -62,10 +62,10 @@ def shiftImageLeft(shiftedImage, img, amount):
 
 
 #-----------------Main program-----------------#
-thresholdName = "Threshold.tif"
-imageName = "HumanMicrovascularEndothelialCell.jpg"
+#thresholdName = "Threshold.tif"
+#imageName = "HumanMicrovascularEndothelialCellAdjusted.png"
 
-fibreBundle = cv2.imread("lightfield.tif") #Read lightfield image
+#fibreBundle = cv2.imread("lightfield.tif") #Read lightfield image
 #img = cv2.imread(imageName) #Read lightfield image
 
 
@@ -76,17 +76,18 @@ fibreBundle = cv2.imread("lightfield.tif") #Read lightfield image
 #cv2.imshow("image", img)
 #createthreshold(fibreBundle)
 
-threshold = cv2.imread(thresholdName) #Need to read image in for multiple layers
-img = cv2.imread("image.png") #Read in image to be overlayed
-shiftedImage = cv2.imread("image.png") #Read in image to be shifted
+#threshold = cv2.imread(thresholdName) #Need to read image in for multiple layers
+#cv2.imshow("Threshold",threshold)
+#img = cv2.imread(imageName) #Read in image to be overlayed
+#shiftedImage = cv2.imread(imageName) #Read in image to be shifted
 
-height, width, channels = img.shape #get dimentions of image to be shifted
+#height, width, channels = img.shape #get dimentions of image to be shifted
 
 #-----------------Cardinal Wobble Image (Cannot be done all at the same time, Python related issues)-----------------#
-#imgShift = shiftImageDown(shiftedImage, img, 100)
-imgShift = shiftImageUp(shiftedImage, img, 100)
-#imgShift = shiftImageRight(shiftedImage, img, 100)
-#imgShift = shiftImageLeft(shiftedImage, img, 100)
+#imgShiftDown = shiftImageDown(shiftedImage, img, 100)
+#imgShiftUp = shiftImageUp(shiftedImage, img, 100)
+#imgShiftRight = shiftImageRight(shiftedImage, img, 100)
+#imgShiftLeft = shiftImageLeft(shiftedImage, img, 100)
 
 
 #outputOriginal = overlapImages(threshold, img) #Overlap images to see image through cores

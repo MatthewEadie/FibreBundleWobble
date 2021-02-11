@@ -26,6 +26,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ColourImage.jpg" />
+    <Content Include="HumanMicrovascularEndothelialCellAdjusted.png" />
     <Content Include="lightfield.tif" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
