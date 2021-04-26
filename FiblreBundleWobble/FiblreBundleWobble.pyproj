@@ -25,6 +25,10 @@
     <Compile Include="FiblreBundleWobble.py" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="a1.jpg" />
+    <Content Include="a2.jpg" />
+    <Content Include="b1.jpg" />
+    <Content Include="b2.jpg" />
     <Content Include="ColourImage.jpg" />
     <Content Include="HumanMicrovascularEndothelialCellAdjusted.png" />
     <Content Include="lightfield.tif" />
