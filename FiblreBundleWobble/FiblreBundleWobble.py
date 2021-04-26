@@ -62,23 +62,27 @@ def shiftImageLeft(shiftedImage, img, amount):
 
 
 #-----------------Main program-----------------#
-#thresholdName = "Threshold.tif"
-#imageName = "HumanMicrovascularEndothelialCellAdjusted.png"
+thresholdName = "Threshold.tif"
+fileName = "b2"
+imageName = fileName + ".jpg"
 
-#fibreBundle = cv2.imread("lightfield.tif") #Read lightfield image
-#img = cv2.imread(imageName) #Read lightfield image
+fibreBundle = cv2.imread("lightfield.tif") #Read lightfield image
+img = cv2.imread(imageName) #Read lightfield image
 
 
-#width = fibreBundle.shape[1]
-#height = fibreBundle.shape[0]
-#dim = (width, height)
-#img = cv2.resize(img, dim)
-#cv2.imshow("image", img)
-#createthreshold(fibreBundle)
+width = fibreBundle.shape[1]
+height = fibreBundle.shape[0]
+dim = (width, height)
+img = cv2.resize(img, dim)
+cv2.imshow("image", img)
+createthreshold(fibreBundle)
 
-#threshold = cv2.imread(thresholdName) #Need to read image in for multiple layers
-#cv2.imshow("Threshold",threshold)
-#img = cv2.imread(imageName) #Read in image to be overlayed
+threshold = cv2.imread(thresholdName) #Need to read image in for multiple layers
+cv2.imshow("Threshold",threshold)
+
+outputOriginal = overlapImages(threshold, img) #Overlap images to see image through cores
+cv2.imshow("Original Image", outputOriginal)
+
 #shiftedImage = cv2.imread(imageName) #Read in image to be shifted
 
 #height, width, channels = img.shape #get dimentions of image to be shifted
@@ -88,7 +92,6 @@ def shiftImageLeft(shiftedImage, img, amount):
 #imgShiftUp = shiftImageUp(shiftedImage, img, 100)
 #imgShiftRight = shiftImageRight(shiftedImage, img, 100)
 #imgShiftLeft = shiftImageLeft(shiftedImage, img, 100)
-
 
 #outputOriginal = overlapImages(threshold, img) #Overlap images to see image through cores
 #cv2.imshow("Original Image", outputOriginal)
@@ -107,23 +110,23 @@ def shiftImageLeft(shiftedImage, img, amount):
 
 
 #-----------------Image overlap-----------------#
-OriginalImage = cv2.imread("ImgOriginalImage.png")
+#OriginalImage = cv2.imread("ImgOriginalImage.png")
 
-correctedUp = cv2.imread("ImgCorrectedUpShift.png")
-correctedDown = cv2.imread("ImgCorrectedDownShift.png")
-correctedLeft = cv2.imread("ImgCorrectedLeftShift.png")
-correctedRight = cv2.imread("ImgCorrectedRightShift.png")
+#correctedUp = cv2.imread("ImgCorrectedUpShift.png")
+#correctedDown = cv2.imread("ImgCorrectedDownShift.png")
+#correctedLeft = cv2.imread("ImgCorrectedLeftShift.png")
+#correctedRight = cv2.imread("ImgCorrectedRightShift.png")
 
-firstOrderCorrection = (OriginalImage/255 + correctedUp/255) *0.7
-secondOrderCorrection = (OriginalImage/255 + correctedUp/255 + correctedDown/255) * 0.6
-thirdOrderCorrection = (OriginalImage/255 + correctedUp/255 + correctedDown/255 + correctedLeft/255) * 0.5
-fourthOrderCorrection = (OriginalImage /255 + correctedUp/255 + correctedDown/255 + correctedLeft/255 + correctedRight/255) *0.4
+#firstOrderCorrection = (OriginalImage/255 + correctedUp/255) *0.7
+#secondOrderCorrection = (OriginalImage/255 + correctedUp/255 + correctedDown/255) * 0.6
+#thirdOrderCorrection = (OriginalImage/255 + correctedUp/255 + correctedDown/255 + correctedLeft/255) * 0.5
+#fourthOrderCorrection = (OriginalImage /255 + correctedUp/255 + correctedDown/255 + correctedLeft/255 + correctedRight/255) *0.4
 
-cv2.imshow("First Correction", firstOrderCorrection)
-cv2.imshow("Second Correction", secondOrderCorrection)
-cv2.imshow("Third Correction", thirdOrderCorrection)
-cv2.imshow("Final Correction", fourthOrderCorrection)
-cv2.imshow("Original Image", OriginalImage)
+#cv2.imshow("First Correction", firstOrderCorrection)
+#cv2.imshow("Second Correction", secondOrderCorrection)
+#cv2.imshow("Third Correction", thirdOrderCorrection)
+#cv2.imshow("Final Correction", fourthOrderCorrection)
+#cv2.imshow("Original Image", OriginalImage)
 
 cv2.waitKey(0)
 cv2.destroyAllWindows()

@@ -26,9 +26,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="a1.jpg" />
+    <Content Include="a1Fibre.png" />
     <Content Include="a2.jpg" />
+    <Content Include="a2Fibre.png" />
     <Content Include="b1.jpg" />
+    <Content Include="b1Fibre.png" />
     <Content Include="b2.jpg" />
+    <Content Include="b2Fibre.png" />
     <Content Include="ColourImage.jpg" />
     <Content Include="HumanMicrovascularEndothelialCellAdjusted.png" />
     <Content Include="lightfield.tif" />
