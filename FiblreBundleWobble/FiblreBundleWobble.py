@@ -1,12 +1,14 @@
 import cv2
 import numpy as np
+import sys
+
+np.set_printoptions(threshold=sys.maxsize)
 
 
 #Threshold image and binarize
 def createthreshold(fibreBundle):
     fibre_gray = cv2.cvtColor(fibreBundle, cv2.COLOR_BGR2GRAY) #convert image to gray scale
     median = cv2.medianBlur(fibre_gray, 1)
-    gaussian = cv2.GaussianBlur(median, (3,3), 5)
     _, threshold = cv2.threshold(fibre_gray, 50, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
 
     cv2.imwrite(thresholdName, threshold)
@@ -62,32 +64,63 @@ def shiftImageLeft(shiftedImage, img, amount):
 
 
 #-----------------Main program-----------------#
-thresholdName = "Threshold.tif"
-fileName = "b2"
-imageName = fileName + ".jpg"
+#thresholdName = "Threshold-1820x1337.tif"
+#threshold = cv2.imread(thresholdName, cv2.IMREAD_GRAYSCALE)
 
-fibreBundle = cv2.imread("lightfield.tif") #Read lightfield image
-img = cv2.imread(imageName) #Read lightfield image
+#imageName = "Image"
+#testImageName = "TestImage"
 
 
-width = fibreBundle.shape[1]
-height = fibreBundle.shape[0]
-dim = (width, height)
-img = cv2.resize(img, dim)
-cv2.imshow("image", img)
-createthreshold(fibreBundle)
+#----Resize image to same as fibre bundle----#
+#for i in range(1,11):
+#    img = cv2.imread(imageName + str(i) + ".tif") #Read lightfield image
 
-threshold = cv2.imread(thresholdName) #Need to read image in for multiple layers
-cv2.imshow("Threshold",threshold)
+#    width = fibreBundle.shape[1]
+#    height = fibreBundle.shape[0]
+#    dim = (width, height)
+#    img = cv2.resize(img, dim)
+#    cv2.imwrite("Output" + imageName + str(i) + ".tif", img)
 
-outputOriginal = overlapImages(threshold, img) #Overlap images to see image through cores
-cv2.imshow("Original Image", outputOriginal)
 
-#shiftedImage = cv2.imread(imageName) #Read in image to be shifted
+#for i in range(1,4):
+#    img = cv2.imread(testImageName + str(i) + ".tif") #Read lightfield image
 
-#height, width, channels = img.shape #get dimentions of image to be shifted
+#    width = fibreBundle.shape[1]
+#    height = fibreBundle.shape[0]
+#    dim = (width, height)
+#    img = cv2.resize(img, dim)
+#    cv2.imwrite("Output" + testImageName + str(i) + ".tif", img)
+
+
+
+#----Overlay training images and test images with fibre----#
+#imageName = "OutputImage"
+#testImageName = "OutputTestImage"
+
+#for i in range(1,11):
+#    img = cv2.imread(imageName + str(i) + ".tif", cv2.IMREAD_GRAYSCALE) #Read lightfield image
+#    outputOverlap = overlapImages(threshold, img) #Overlap images to see image through cores
+#    cv2.imshow("Image"+str(i), outputOverlap)
+
+
+#for i in range(1,4):
+#    img = cv2.imread(testImageName + str(i) + ".tif", cv2.IMREAD_GRAYSCALE) #Read lightfield image
+#    outputOverlap = overlapImages(threshold, img) #Overlap images to see image through cores
+#    cv2.imshow("FibreTestImage"+str(i), outputOverlap)
+
+
+
+
+
+
+
+
+
 
 #-----------------Cardinal Wobble Image (Cannot be done all at the same time, Python related issues)-----------------#
+#shiftedImage = cv2.imread(imageName) #Read in image to be shifted
+#height, width, channels = img.shape #get dimentions of image to be shifted
+
 #imgShiftDown = shiftImageDown(shiftedImage, img, 100)
 #imgShiftUp = shiftImageUp(shiftedImage, img, 100)
 #imgShiftRight = shiftImageRight(shiftedImage, img, 100)

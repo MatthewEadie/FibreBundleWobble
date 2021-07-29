@@ -25,17 +25,8 @@
     <Compile Include="FiblreBundleWobble.py" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="a1.jpg" />
-    <Content Include="a1Fibre.png" />
-    <Content Include="a2.jpg" />
-    <Content Include="a2Fibre.png" />
-    <Content Include="b1.jpg" />
-    <Content Include="b1Fibre.png" />
-    <Content Include="b2.jpg" />
-    <Content Include="b2Fibre.png" />
-    <Content Include="ColourImage.jpg" />
-    <Content Include="HumanMicrovascularEndothelialCellAdjusted.png" />
-    <Content Include="lightfield.tif" />
+    <Content Include="FibreTestImage1.tiff" />
+    <Content Include="Threshold-1820x1337.tif" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
