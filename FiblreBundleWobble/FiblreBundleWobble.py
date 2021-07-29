@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+import os
 import sys
 
 np.set_printoptions(threshold=sys.maxsize)
@@ -59,6 +60,39 @@ def shiftImageLeft(shiftedImage, img, amount):
             shiftedImage[:,i] *= 0
 
     return shiftedImage
+
+
+
+#------RESIZE IMAFE FOR PIXEL RESOLUTION------#
+#imagePath = "C:/Users/uodit/source/repos/snowomi/FibreBundleWobble/FiblreBundleWobble/80788/Original/"
+#imageSavePath = "C:/Users/uodit/source/repos/snowomi/FibreBundleWobble/FiblreBundleWobble/80788/Resized/"
+
+#imageNames = os.listdir(imagePath)
+
+##images have resolution 0.251 u/pixel
+##fibre has resolution 0.32 u/pixel
+##Need to reduce ize of image by 0.784 to match pixel resolution
+#for imageName in imageNames:
+#    print(imageName)
+#    image = cv2.imread(imagePath + imageName)
+#    imageResized = cv2.resize(image,(1345,738));
+#    cv2.imwrite(imageSavePath + imageName, imageResized)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
